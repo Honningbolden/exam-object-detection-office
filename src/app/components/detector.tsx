@@ -14,7 +14,6 @@ export default function ObjectDetector() {
 
   // references
   const webcamRef = useRef(null);
-  const canvasRef = useRef(null);
 
   useEffect(() => {
     const loadModel = async () => {
@@ -53,8 +52,8 @@ export default function ObjectDetector() {
   };
 
   const onWebcamLoad = () => {
-    if (isModelReady && webcamRef.current?.video && canvasRef.current) {
-      detectVideo(webcamRef.current.video, model, canvasRef.current);
+    if (isModelReady && webcamRef.current?.video) {
+      detectVideo(webcamRef.current.video, model);
     }
   };
 
@@ -78,7 +77,6 @@ export default function ObjectDetector() {
             }}
             onLoadedMetadata={onWebcamLoad}
           />
-          {model && <canvas ref={canvasRef} className='absolute top-0 left-0 h-full w-full' width={640} height={640} />}
         </div>
       )}
     </div>
