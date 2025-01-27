@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Office Object Detection
 
-## Getting Started
+This project is an exam submission for the 3rd semester of Coded Design and Visual Communication at The Danish School of Media & Journalism. It uses a custom-trained YOLOv8n model to detect objects in an office environment, implemented with Next.js and TensorFlow.js.
 
-First, run the development server:
+## Features
+
+- Real-time object detection using a custom-trained YOLOv8n model
+- Browser-based inference using TensorFlow.js
+- Responsive web interface built with Next.js
+
+## Setup
 
 ```bash
+# Install dependencies
+npm install
+
+# Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technical Details
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Framework: Next.js 14
+- ML Model: Custom-trained YOLO11n
+- Inference: TensorFlow.js with WebGL backend
+- UI: React components with Tailwind CSS
 
-## Learn More
+## Project Context
 
-To learn more about Next.js, take a look at the following resources:
+This project was developed as part of an exam focusing on implementing machine learning models in web applications. The model has been specifically trained to detect office-related objects.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project is built upon MIT-licensed code. See the original repository for more details.
 
-## Deploy on Vercel
+## Credits
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project builds upon the work of [Hyuto's yolov8-tfjs](https://github.com/Hyuto/yolov8-tfjs) repository. The core logic for loading and processing YOLOv8 models in TensorFlow.js has been adapted from their implementation. Many thanks to Hyuto for making their code publicly available.
