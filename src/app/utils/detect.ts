@@ -1,12 +1,12 @@
 import * as tf from '@tensorflow/tfjs';
 import labels from './labels.json';
 
-interface DetectionResult {
+export interface DetectionResult {
   label: string;
   confidence: number;
 }
 
-interface YOLOModel extends tf.GraphModel {
+export interface YOLOModel {
   net: tf.GraphModel;
   inputShape: number[];
 }
