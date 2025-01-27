@@ -3,14 +3,16 @@
 import * as tf from '@tensorflow/tfjs';
 import '@tensorflow/tfjs-backend-webgl';
 import { useEffect, useRef, useState } from 'react';
-import { detect, detectVideo } from '../utils/detect';
 import Webcam from 'react-webcam';
+import { detectVideo } from '../utils/detect';
+import searchLabels from '../utils/search-labels.json';
 
 export default function ObjectDetector() {
   const [loading, setLoading] = useState({ loading: true, progress: 0 }); // loading state
   const [model, setModel] = useState(null);
   const [isWebcamOn, setIsWebcamOn] = useState(false);
   const [isModelReady, setIsModelReady] = useState(false);
+  const [detections, setDetections] = useState([]);
 
   // references
   const webcamRef = useRef(null);
@@ -53,8 +55,27 @@ export default function ObjectDetector() {
 
   const onWebcamLoad = () => {
     if (isModelReady && webcamRef.current?.video) {
-      detectVideo(webcamRef.current.video, model);
+      detectVideo(webcamRef.current.video, model, handlePredictions);
     }
+  };
+
+  const handlePredictions = (results) => {
+    const relevantResults = results.filter((result) => searchLabels.includes(result.label));
+
+    setDetections((prevDetections) => {
+      const newDetections = [...prevDetections];
+
+      relevantResults.forEach((newDetection) => {
+        const existingIndex = newDetections.findIndex((det) => det.label === newDetection.label);
+
+        if (existingIndex === -1) {
+          newDetections.push(newDetection);
+        } else if (newDetection.confidence > newDetections[existingIndex].confidence) {
+          newDetections[existingIndex] = newDetection;
+        }
+      });
+      return newDetections;
+    });
   };
 
   return (
@@ -77,6 +98,18 @@ export default function ObjectDetector() {
             }}
             onLoadedMetadata={onWebcamLoad}
           />
+        </div>
+      )}
+
+      {detections && (
+        <div className='absolute top-8 left-8 max-h-96 min-w-24 bg-black/20'>
+          <ul>
+            {detections.map((det, i) => (
+              <li key={i}>
+                {det.label}: {(det.confidence * 100).toFixed(2)}%
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </div>
