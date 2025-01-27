@@ -1,6 +1,6 @@
 # Office Object Detection
 
-This project is an exam submission for the 3rd semester of Coded Design and Visual Communication at The Danish School of Media & Journalism. It uses a custom-trained YOLOv8n model to detect objects in an office environment, implemented with Next.js and TensorFlow.js.
+This project is an exam submission for the 3rd semester of Coded Design and Visual Communication at The Danish School of Media & Journalism. It uses a custom-trained YOLO11n model to detect objects in an office environment, implemented with Next.js and TensorFlow.js. Visuals are intended for mobile devices, and works as a proof-of-concept in conjunction with a Figma mockup, but the demo works on most devices.
 
 ## Features
 
